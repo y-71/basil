@@ -1,0 +1,28 @@
+{
+	"ImportPath": "github.com/dwarvesf/glod-cli",
+	"GoVersion": "go1.6",
+	"Deps": [
+		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v0.3.2-79-gb444041",
+			"Rev": "b4440419d81240f8451a505b2f806c853bc2befc"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.2.0-219-ga294348",
+			"Rev": "a2943485b110df8842045ae0600047f88a3a56a1"
+		},
+		{
+			"ImportPath": "github.com/dwarvesf/glod",
+			"Rev": "391741190a8452537a65b3fca8b38370e5b33e9b"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "5d0a0f8cd486626821d2ba44d471ab1c9271d38f"
+		}
+	]
+}
