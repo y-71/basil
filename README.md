@@ -16,6 +16,10 @@ If you want to use glod-cli, simply install the glod-cli binaries. The glod-cli 
 
 [![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/glod-cli.gif)](/glod-cli.gif)
 
+# TODO
+- Facebook video
+- Udemy
+- Coursera
 
 # License
 
