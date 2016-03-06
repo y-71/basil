@@ -1,19 +1,26 @@
 # glod-cli
-Command line tool using [glod](https://github.com/dwarvesf/glod) library to download music/video from  multiple sources.
+ **glod-cli** is a command line tool using [glod](https://github.com/dwarvesf/glod) library to download music/video from  multiple resources.
 
 Also able to download playlist.
 
-# Currently supported source
+# Currently supported resources
 - [Nhaccuatui](http://www.nhaccuatui.com/)(mp3)
 - [ZingMp3](http://mp3.zing.vn/)(mp3)
-- [Youtube](https://www.youtube.com/)(mp4)
+- [Youtube](https://www.youtube.com/)(video extensions)
 - [Soundcloud](https://soundcloud.com)(mp3)
 
 # How to use
 If you want to use glod-cli, simply install the glod-cli binaries. The glod-cli binaries have no external dependencies.
 
-# Video instruction
-{{% img src="glod-cli_2.gif" class="third right" %}}
+# Video Walkthough
+
+[![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/glod-cli_2.gif)](/glod-cli_2.gif)
+
+# TODO
+- Facebook video
+- Udemy
+- Coursera
+
 # License
 
 Copyright 2016 Dwarves Foundation
