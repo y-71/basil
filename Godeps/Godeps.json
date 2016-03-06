@@ -1,6 +1,9 @@
 {
 	"ImportPath": "github.com/dwarvesf/glod-cli",
 	"GoVersion": "go1.6",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/PuerkitoBio/goquery",
@@ -18,7 +21,7 @@
 		},
 		{
 			"ImportPath": "github.com/dwarvesf/glod",
-			"Rev": "391741190a8452537a65b3fca8b38370e5b33e9b"
+			"Rev": "61e49e66b8811bec6a591b92f47507d8a50d4ac1"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",

@@ -13,7 +13,7 @@ Also able to download playlist.
 If you want to use glod-cli, simply install the glod-cli binaries. The glod-cli binaries have no external dependencies.
 
 # Video instruction
-{{% img src="glod-cli.gif" class="third right" %}}
+{{% img src="glod-cli_2.gif" class="third right" %}}
 # License
 
 Copyright 2016 Dwarves Foundation
