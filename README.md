@@ -1,25 +1,103 @@
+[![Build Status](https://travis-ci.org/dwarvesf/glod-cli.svg?branch=master)](https://travis-ci.org/dwarvesf/glod-cli)
+[![Coverage Status](https://coveralls.io/repos/github/dwarvesf/glod-cli/badge.svg?branch=master)](https://coveralls.io/github/dwarvesf/glod-cli?branch=master)
+
 # glod-cli
- **glod-cli** is a command line tool using [glod](https://github.com/dwarvesf/glod) library to download music/video from  multiple resources.
 
-Also able to download playlist.
+**glod-cli** is a small command line tool that using [glod](https://github.com/dwarvesf/glod) to download music/video from multiple sources.
 
-# Currently supported resources
-- [Nhaccuatui](http://www.nhaccuatui.com/)(mp3)
-- [ZingMp3](http://mp3.zing.vn/)(mp3)
-- [Youtube](https://www.youtube.com/)(video extensions)
-- [Soundcloud](https://soundcloud.com)(mp3)
+glod-cli is written in [Go](http://golang.org/) with support for multiple platforms. We currently provide pre-built binaries for Windows, Linux, FreeBSD and  OS X (Darwin) for x64, i386 and ARM architectures.
 
-# How to use
+glod-cli may also be compiled from source wherever the Go compiler tool chain can run, e.g. for other operating systems including DragonFly BSD, OpenBSD, Plan 9 and Solaris
+
+# Usage
+
+Make sure either `glod-cli` is in your `$PATH` or provide a path to it.
+
+``` shell
+
+$ glod-cli help
+
+NAME:
+   glod-cli - Command line tool using glod library to download music/video from multiple source
+
+USAGE:
+   glod-cli_darwin_amd64 [global options] command [command options] [arguments...]
+
+VERSION:
+   1.0
+
+COMMANDS:
+   help, h	Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --link download "link"	Input zing/nhaccuatui/youtube/soundcloud link
+   --custom directory "dir"	The directory you want to save
+   --help, -h			show help
+   --version, -v		print the version
+
+```
+
+# Supported sources & TODO
+
+### Music
+
+- [x] [Nhaccuatui](http://www.nhaccuatui.com/)
+- [x] [Zing Mp3](http://mp3.zing.vn/)
+- [x] [SoundCloud](https://soundcloud.com)
+
+### Video 
+
+- [x] [YouTube](https://www.youtube.com/)
+- [ ] Vimeo
+- [ ] Lynda
+- [ ] Udemy
+- [ ] Coursera
+
+### Files
+
+- [ ] Flickr
+- [ ] Slideshare
+- [ ] Dropbox
+
+# Installation
+
+### Binary Install
+
 If you want to use glod-cli, simply install the glod-cli binaries. The glod-cli binaries have no external dependencies.
+
+Installation is very easy. Simply download the appropriate version for your platform from [glod-cli Releases](https://github.com/dwarvesf/glod-cli/releases). Once downloaded it can be run from anywhere. You don’t need to install it into a global location. This works well for shared hosts and other systems where you don’t have a privileged account.
+
+Ideally, you should download and put it somewhere in your `$PATH` for easy use. `/usr/local/bin` is the most probable location.
+
+On OS X, if you have [Homebrew](http://brew.sh/), installation is even easier: just run 
+
+```
+$ brew update && brew install glod-cli
+```
+
+### Build and Install the Binaries from Source
+
+Add glod-cli and its package dependencies to your go src directory.
+
+```
+go get -v github.com/dwarvesf/glod-cli
+```
+
+Once the get completes, you should find your new `glod-cli` (or `glod-cli.exe`) executable sitting inside `$GOPATH/bin/`.
+
+To update glod-cli dependencies, use `go get` with the `-u` option.
+
+```
+go get -u -v github.com/dwarvesf/glod-cli
+```
+
+### Upgrading
+
+Upgrading glod-cli is as easy as downloading and replacing the executable you’ve placed in your `$PATH`.
 
 # Video Walkthough
 
 [![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/glod-cli_2.gif)](/glod-cli_2.gif)
-
-# TODO
-- Facebook video
-- Udemy
-- Coursera
 
 # License
 

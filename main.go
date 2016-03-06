@@ -63,7 +63,7 @@ func main() {
 
 	if link != "" {
 
-		var glod glod.Glod
+		var glod glod.Source
 
 		if strings.Contains(link, initNhacCuaTui) {
 			glod = &nct.NhacCuaTui{}
@@ -93,7 +93,7 @@ func main() {
 			temp := l
 
 			_temp := temp
-			//if youtube there is a step to split string
+			// if youtube there is a step to split string
 			if strings.Contains(link, initYoutube) || strings.Contains(link, initZingMp3) {
 				splitUrl := strings.Split(_temp, "~")
 				temp = splitUrl[0]
@@ -169,7 +169,7 @@ func main() {
 				}
 
 				io.Copy(out, rd)
-				//sleep to perfect progress bar
+				// sleep to perfect progress bar
 				time.Sleep(500 * time.Millisecond)
 			}()
 		}
