@@ -97,7 +97,7 @@ Upgrading glod-cli is as easy as downloading and replacing the executable you’
 
 # Video Walkthough
 
-[![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/glod-cli_2.gif)](/glod-cli_2.gif)
+[![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/walkthrough.gif)](/walkthrough.gif)
 
 # License
 
