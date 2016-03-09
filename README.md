@@ -44,10 +44,12 @@ GLOBAL OPTIONS:
 - [x] [Nhaccuatui](http://www.nhaccuatui.com/)
 - [x] [Zing Mp3](http://mp3.zing.vn/)
 - [x] [SoundCloud](https://soundcloud.com)
+- [x] [Chiasenhac](http://chiasenhac.com)
 
 ### Video 
 
 - [x] [YouTube](https://www.youtube.com/)
+- [x] [Facebook](https://facebook.com/)
 - [ ] Vimeo
 - [ ] Lynda
 - [ ] Udemy
@@ -90,6 +92,15 @@ To update glod-cli dependencies, use `go get` with the `-u` option.
 ```
 go get -u -v github.com/dwarvesf/glod-cli
 ```
+Example:
+```
+glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw 
+```
+And 
+```
+glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw youtube-download
+```
+for download to directory youtube-download
 
 ### Upgrading
 
