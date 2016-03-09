@@ -1,11 +1,15 @@
 package cmd
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"runtime"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -13,6 +17,8 @@ import (
 	"github.com/cheggaaa/pb"
 	"github.com/codegangsta/cli"
 	"github.com/dwarvesf/glod"
+	"github.com/dwarvesf/glod/chiasenhac"
+	"github.com/dwarvesf/glod/facebook"
 	nct "github.com/dwarvesf/glod/nhaccuatui"
 	"github.com/dwarvesf/glod/soundcloud"
 	"github.com/dwarvesf/glod/youtube"
@@ -24,10 +30,13 @@ const (
 	initZingMp3    string = "zing"
 	initYoutube    string = "youtube"
 	initSoundCloud string = "soundcloud"
+	initChiaSeNhac string = "chiasenhac"
+	initFacebook   string = "facebook"
 )
 
 var link string
 var directory string
+var play bool
 
 // List of
 var Flags = []cli.Flag{
@@ -56,6 +65,10 @@ func Action(c *cli.Context) {
 		directory = c.Args()[1]
 	}
 
+	if len(c.Args()) > 2 {
+		play, _ = strconv.ParseBool(c.Args()[2])
+	}
+
 	if link != "" {
 
 		var glod glod.Source
@@ -68,6 +81,10 @@ func Action(c *cli.Context) {
 			glod = &youtube.Youtube{}
 		} else if strings.Contains(link, initSoundCloud) {
 			glod = &soundcloud.SoundCloud{}
+		} else if strings.Contains(link, initChiaSeNhac) {
+			glod = &chiasenhac.ChiaSeNhac{}
+		} else if strings.Contains(link, initFacebook) {
+			glod = &facebook.Facebook{}
 		}
 
 		fmt.Println("Retrieving metadata ...")
@@ -75,6 +92,7 @@ func Action(c *cli.Context) {
 		listStream, err := glod.GetDirectLink(link)
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 
 		var wg sync.WaitGroup
@@ -125,6 +143,17 @@ func Action(c *cli.Context) {
 				splitName := strings.Split(temp, "/")
 				bar.Prefix(splitName[4] + ".mp3")
 				name = append(name, splitName[4]+".mp3")
+			} else if strings.Contains(link, initChiaSeNhac) {
+				splitName := strings.Split(temp, "~")
+				splitNameSplash := strings.Split(splitName[0], "/")
+				var nameBeforeSanitize = splitNameSplash[len(splitNameSplash)-1]
+				var nameSanitized = strings.Replace(nameBeforeSanitize, "%20", " ", -1)
+				bar.Prefix(nameSanitized)
+				name = append(name, nameSanitized)
+			} else if strings.Contains(link, initFacebook) {
+				splitName := strings.Split(link, "/")
+				bar.Prefix(splitName[len(splitName)-2] + ".mp4")
+				name = append(name, splitName[len(splitName)-2]+".mp4")
 			}
 
 			barList = append(barList, bar)
@@ -137,6 +166,7 @@ func Action(c *cli.Context) {
 
 		// Download list of media files
 		fmt.Println("Downloading ...")
+		var listFullName []string
 		for i, bar := range barList {
 			_bar := bar
 			_i := i
@@ -160,6 +190,8 @@ func Action(c *cli.Context) {
 					fullNameFile = directory + string(filepath.Separator) + name[_i]
 				}
 
+				listFullName = append(listFullName, fullNameFile)
+
 				out, err := os.Create(fullNameFile)
 				defer out.Close()
 				if err != nil {
@@ -175,7 +207,22 @@ func Action(c *cli.Context) {
 		}
 		wg.Wait()
 		pool.Stop()
-		fmt.Println("Finish.")
 
+		if runtime.GOOS == "darwin" {
+			fmt.Println("Do you want to play it now?(y/n)")
+			reader := bufio.NewReader(os.Stdin)
+			text, _ := reader.ReadString('\n')
+
+			if strings.TrimSpace(text) == "y" {
+				fmt.Println("Playing...")
+				for _, v := range listFullName {
+					cmd := exec.Command("afplay", v)
+					cmd.Start()
+					cmd.Wait()
+				}
+			}
+		}
+		// cmd := exec.Command("sh", "-c", "afplay *.mp3")
+		fmt.Println("Finish.")
 	}
 }
