@@ -22,23 +22,31 @@
 		},
 		{
 			"ImportPath": "github.com/dwarvesf/glod",
-			"Rev": "c1d36c9532a92711066d16c74c97f30666a5aa78"
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
+		},
+		{
+			"ImportPath": "github.com/dwarvesf/glod/chiasenhac",
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
+		},
+		{
+			"ImportPath": "github.com/dwarvesf/glod/facebook",
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
 		},
 		{
 			"ImportPath": "github.com/dwarvesf/glod/nhaccuatui",
-			"Rev": "c1d36c9532a92711066d16c74c97f30666a5aa78"
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
 		},
 		{
 			"ImportPath": "github.com/dwarvesf/glod/soundcloud",
-			"Rev": "c1d36c9532a92711066d16c74c97f30666a5aa78"
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
 		},
 		{
 			"ImportPath": "github.com/dwarvesf/glod/youtube",
-			"Rev": "c1d36c9532a92711066d16c74c97f30666a5aa78"
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
 		},
 		{
 			"ImportPath": "github.com/dwarvesf/glod/zing",
-			"Rev": "c1d36c9532a92711066d16c74c97f30666a5aa78"
+			"Rev": "45022a4118e7b517e34a1d3ec14f4e9d4b412942"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",
