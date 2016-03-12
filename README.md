@@ -9,57 +9,9 @@ glod-cli is written in [Go](http://golang.org/) with support for multiple platfo
 
 glod-cli may also be compiled from source wherever the Go compiler tool chain can run, e.g. for other operating systems including DragonFly BSD, OpenBSD, Plan 9 and Solaris
 
-# Usage
+# Video Walkthough
 
-Make sure either `glod-cli` is in your `$PATH` or provide a path to it.
-
-``` shell
-
-$ glod-cli help
-
-NAME:
-   glod-cli - Command line tool using glod library to download music/video from multiple source
-
-USAGE:
-   glod-cli_darwin_amd64 [global options] command [command options] [arguments...]
-
-VERSION:
-   1.0
-
-COMMANDS:
-   help, h	Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   --link download "link"	Input zing/nhaccuatui/youtube/soundcloud link
-   --custom directory "dir"	The directory you want to save
-   --help, -h			show help
-   --version, -v		print the version
-
-```
-
-# Supported sources & TODO
-
-### Music
-
-- [x] [Nhaccuatui](http://www.nhaccuatui.com/)
-- [x] [Zing Mp3](http://mp3.zing.vn/)
-- [x] [SoundCloud](https://soundcloud.com)
-- [x] [Chiasenhac](http://chiasenhac.com)
-
-### Video 
-
-- [x] [YouTube](https://www.youtube.com/)
-- [x] [Facebook](https://facebook.com/)
-- [ ] Vimeo
-- [ ] Lynda
-- [ ] Udemy
-- [ ] Coursera
-
-### Files
-
-- [ ] Flickr
-- [ ] Slideshare
-- [ ] Dropbox
+[![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/walkthrough.gif)](/walkthrough.gif)
 
 # Installation
 
@@ -92,23 +44,82 @@ To update glod-cli dependencies, use `go get` with the `-u` option.
 ```
 go get -u -v github.com/dwarvesf/glod-cli
 ```
-Example:
-```
-glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw 
-```
-And 
-```
-glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw youtube-download
-```
-for download to directory youtube-download
 
 ### Upgrading
 
 Upgrading glod-cli is as easy as downloading and replacing the executable you’ve placed in your `$PATH`.
+# Usage
 
-# Video Walkthough
+Make sure either `glod-cli` is in your `$PATH` or provide a path to it.
 
-[![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/walkthrough.gif)](/walkthrough.gif)
+``` shell
+
+$ glod-cli help
+
+NAME:
+   glod-cli - A small cli written in Go to help download music/video from multiple sources.
+
+USAGE:
+   glod-cli [global options] command [command options] [arguments...]
+
+VERSION:
+   1.0.3
+
+AUTHOR(S):
+    <dev@dwarvesf.com>
+
+COMMANDS:
+   help, h	Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --Media URL "link"				Input MP3/nhaccuatui/youtube/soundcloud link
+   --Custom output directory "dir"	The directory you want to save
+   --play							Play song after downloaded
+   --help, -h						show help
+   --version, -v					print the version
+	
+```
+
+Example:
+To download song/video to current directory
+```
+glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw 
+```
+To download song/video to custom directory
+```
+glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw youtube-download
+```
+To play song/video after downloaded(OSX support)
+```
+glod-cli --play https://www.youtube.com/watch?v=6d6oq0zGGmw
+```
+
+
+# Supported sources & TODO
+
+### Music
+
+- [x] [Nhaccuatui](http://www.nhaccuatui.com/)
+- [x] [Zing Mp3](http://mp3.zing.vn/)
+- [x] [SoundCloud](https://soundcloud.com)
+- [x] [Chiasenhac](http://chiasenhac.com)
+
+### Video 
+
+- [x] [YouTube](https://www.youtube.com/)
+- [x] [Facebook](https://facebook.com/)
+- [x] [Vimeo](https://vimeo.com/)
+- [ ] Lynda
+- [ ] Udemy
+- [ ] Coursera
+
+### Files
+
+- [ ] Flickr
+- [ ] Slideshare
+- [ ] Dropbox
+
+
 
 # License
 

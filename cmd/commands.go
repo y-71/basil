@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"bufio"
 	"fmt"
 	"io"
 	"net/http"
@@ -9,7 +8,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -21,6 +19,7 @@ import (
 	"github.com/dwarvesf/glod/facebook"
 	nct "github.com/dwarvesf/glod/nhaccuatui"
 	"github.com/dwarvesf/glod/soundcloud"
+	"github.com/dwarvesf/glod/vimeo"
 	"github.com/dwarvesf/glod/youtube"
 	"github.com/dwarvesf/glod/zing"
 )
@@ -32,6 +31,7 @@ const (
 	initSoundCloud string = "soundcloud"
 	initChiaSeNhac string = "chiasenhac"
 	initFacebook   string = "facebook"
+	initVimeo      string = "vimeo"
 )
 
 var link string
@@ -50,11 +50,16 @@ var Flags = []cli.Flag{
 		Value: "dir",
 		Usage: "The directory you want to save",
 	},
+	cli.BoolFlag{
+		Name:  "play",
+		Usage: "Play song after downloaded",
+	},
 }
 
 // Action defines the main action for glod-cli
 func Action(c *cli.Context) {
 
+	play = c.Bool("play")
 	if len(c.Args()) <= 0 {
 		cli.ShowAppHelp(c)
 		return
@@ -63,10 +68,6 @@ func Action(c *cli.Context) {
 	link = c.Args()[0]
 	if len(c.Args()) > 1 {
 		directory = c.Args()[1]
-	}
-
-	if len(c.Args()) > 2 {
-		play, _ = strconv.ParseBool(c.Args()[2])
 	}
 
 	if link != "" {
@@ -85,6 +86,8 @@ func Action(c *cli.Context) {
 			glod = &chiasenhac.ChiaSeNhac{}
 		} else if strings.Contains(link, initFacebook) {
 			glod = &facebook.Facebook{}
+		} else if strings.Contains(link, initVimeo) {
+			glod = &vimeo.Vimeo{}
 		}
 
 		fmt.Println("Retrieving metadata ...")
@@ -108,7 +111,7 @@ func Action(c *cli.Context) {
 
 			_temp := temp
 			// if youtube there is a step to split string
-			if strings.Contains(link, initYoutube) || strings.Contains(link, initZingMp3) {
+			if strings.Contains(link, initYoutube) || strings.Contains(link, initZingMp3) || strings.Contains(link, initVimeo) {
 				splitUrl := strings.Split(_temp, "~")
 				temp = splitUrl[0]
 			}
@@ -124,37 +127,42 @@ func Action(c *cli.Context) {
 			bar.ShowBar = true
 			bar.ShowPercent = true
 
+			var nameSanitized string
+
 			if strings.Contains(link, initNhacCuaTui) {
 				splitName := strings.Split(temp, "/")
-				bar.Prefix(splitName[len(splitName)-1])
-				name = append(name, splitName[len(splitName)-1])
+				nameSanitized = strings.Trim(splitName[len(splitName)-1], " ")
 
 			} else if strings.Contains(link, initZingMp3) {
 				splitName := strings.Split(_temp, "~")
-				bar.Prefix(splitName[1] + ".mp3")
-				name = append(name, splitName[1]+".mp3")
+				nameSanitized = strings.Trim(splitName[1]+".mp3", " ")
 
 			} else if strings.Contains(link, initYoutube) {
 				splitName := strings.Split(_temp, "~")
-				bar.Prefix(splitName[1])
-				name = append(name, splitName[1])
+				nameSanitized = strings.Trim(splitName[1], " ")
 
 			} else if strings.Contains(link, initSoundCloud) {
 				splitName := strings.Split(temp, "/")
-				bar.Prefix(splitName[4] + ".mp3")
-				name = append(name, splitName[4]+".mp3")
+				nameSanitized = strings.Trim(splitName[4]+".mp3", " ")
+
 			} else if strings.Contains(link, initChiaSeNhac) {
 				splitName := strings.Split(temp, "~")
 				splitNameSplash := strings.Split(splitName[0], "/")
 				var nameBeforeSanitize = splitNameSplash[len(splitNameSplash)-1]
-				var nameSanitized = strings.Replace(nameBeforeSanitize, "%20", " ", -1)
-				bar.Prefix(nameSanitized)
-				name = append(name, nameSanitized)
+				nameSanitized = strings.Replace(nameBeforeSanitize, "%20", " ", -1)
+				nameSanitized = strings.Trim(nameSanitized, " ")
+
 			} else if strings.Contains(link, initFacebook) {
 				splitName := strings.Split(link, "/")
-				bar.Prefix(splitName[len(splitName)-2] + ".mp4")
-				name = append(name, splitName[len(splitName)-2]+".mp4")
+				nameSanitized = strings.Trim(splitName[len(splitName)-2]+".mp4", " ")
+
+			} else if strings.Contains(link, initVimeo) {
+				splitName := strings.Split(_temp, "~")
+				nameSanitized = strings.Trim(splitName[1]+".mp4", " ")
 			}
+
+			bar.Prefix(nameSanitized)
+			name = append(name, nameSanitized)
 
 			barList = append(barList, bar)
 		}
@@ -195,6 +203,7 @@ func Action(c *cli.Context) {
 				out, err := os.Create(fullNameFile)
 				defer out.Close()
 				if err != nil {
+					fmt.Println(err.Error())
 					fmt.Println("Cannot create file")
 					return
 				}
@@ -208,19 +217,18 @@ func Action(c *cli.Context) {
 		wg.Wait()
 		pool.Stop()
 
-		if runtime.GOOS == "darwin" {
-			fmt.Println("Do you want to play it now?(y/n)")
-			reader := bufio.NewReader(os.Stdin)
-			text, _ := reader.ReadString('\n')
+		if play && runtime.GOOS == "darwin" {
+			// reader := bufio.NewReader(os.Stdin)
+			// text, _ := reader.ReadString('\n')
 
-			if strings.TrimSpace(text) == "y" {
-				fmt.Println("Playing...")
-				for _, v := range listFullName {
-					cmd := exec.Command("afplay", v)
-					cmd.Start()
-					cmd.Wait()
-				}
+			// if strings.TrimSpace(text) == "y" {
+			fmt.Println("Playing...")
+			for _, v := range listFullName {
+				cmd := exec.Command("afplay", v)
+				cmd.Start()
+				cmd.Wait()
 			}
+			// }
 		}
 		// cmd := exec.Command("sh", "-c", "afplay *.mp3")
 		fmt.Println("Finish.")
