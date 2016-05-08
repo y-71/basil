@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/dwarvesf/glod-cli.svg?branch=master)](https://travis-ci.org/dwarvesf/glod-cli)
-[![Coverage Status](https://coveralls.io/repos/github/dwarvesf/glod-cli/badge.svg?branch=master)](https://coveralls.io/github/dwarvesf/glod-cli?branch=master)
+
 
 # glod-cli
 
