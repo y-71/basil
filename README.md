@@ -86,7 +86,7 @@ glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw
 ```
 To download song/video to custom directory
 ```
-glod-cli -l=https://www.youtube.com/watch?v=6d6oq0zGGmw -o=youtube-download
+glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw -o=youtube-download
 ```
 To play song/video after downloaded(OSX support)
 ```
