@@ -82,15 +82,15 @@ GLOBAL OPTIONS:
 Example:
 To download song/video to current directory
 ```
-glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw 
+glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw 
 ```
 To download song/video to custom directory
 ```
-glod-cli https://www.youtube.com/watch?v=6d6oq0zGGmw youtube-download
+glod-cli -l=https://www.youtube.com/watch?v=6d6oq0zGGmw -o=youtube-download
 ```
 To play song/video after downloaded(OSX support)
 ```
-glod-cli --play https://www.youtube.com/watch?v=6d6oq0zGGmw
+glod-cli play https://www.youtube.com/watch?v=6d6oq0zGGmw
 ```
 
 
