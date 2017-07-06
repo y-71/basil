@@ -44,8 +44,22 @@ func New() *cobra.Command {
 
 	rootCmd.AddCommand(initDownloadCommand())
 	rootCmd.AddCommand(initPlayCommand())
+	rootCmd.AddCommand(initVersionCommand())
 
 	return rootCmd
+}
+
+func initVersionCommand() *cobra.Command {
+	return &cobra.Command{
+		Use:   "version",
+		Short: "Print the version number of glod-cli",
+		Long:  `All software has versions. This is glod-cli's.`,
+		Run: func(cmd *cobra.Command, args []string) {
+			runVersion()
+			os.Exit(0)
+		},
+	}
+
 }
 
 func initDownloadCommand() *cobra.Command {
