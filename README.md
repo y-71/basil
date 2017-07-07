@@ -1,5 +1,3 @@
-
-
 # glod-cli
 
 **glod-cli** is a small command line tool that using [glod](https://github.com/dwarvesf/glod) to download music/video from multiple sources.
@@ -8,11 +6,9 @@ glod-cli is written in [Go](http://golang.org/) with support for multiple platfo
 
 glod-cli may also be compiled from source wherever the Go compiler tool chain can run, e.g. for other operating systems including DragonFly BSD, OpenBSD, Plan 9 and Solaris
 
-# Video Walkthough
+[![Video Walkthrough](/img/walkthrough.gif)](/img/walkthrough.gif)
 
-[![Video Walkthrough](https://raw.githubusercontent.com/dwarvesf/glod-cli/master/walkthrough.gif)](/walkthrough.gif)
-
-# Installation
+## Installation
 
 ### Binary Install
 
@@ -22,14 +18,17 @@ Installation is very easy. Simply download the appropriate version for your plat
 
 Ideally, you should download and put it somewhere in your `$PATH` for easy use. `/usr/local/bin` is the most probable location.
 
-On OS X, if you have [Homebrew](http://brew.sh/), installation is even easier: just run 
+On OS X, if you have [Homebrew](http://brew.sh/), installation is even easier:
 
 ```
-$ brew update && brew install glod-cli
+$ brew tap dwarvesf/homebrew-tap
+$ brew install glod-cli
 ```
+
+[![Homebrew Tap](/img/homebrew-tap.png)](/img/homebrew-tap.png)
 
 ### Build and Install the Binaries from Source
-
+  
 Add glod-cli and its package dependencies to your go src directory.
 
 ```
@@ -47,7 +46,8 @@ go get -u -v github.com/dwarvesf/glod-cli
 ### Upgrading
 
 Upgrading glod-cli is as easy as downloading and replacing the executable you’ve placed in your `$PATH`.
-# Usage
+
+## Usage
 
 Make sure either `glod-cli` is in your `$PATH` or provide a path to it.
 
@@ -55,44 +55,37 @@ Make sure either `glod-cli` is in your `$PATH` or provide a path to it.
 
 $ glod-cli help
 
-NAME:
-   glod-cli - A small cli written in Go to help download music/video from multiple sources.
+A small cli written in Go to help download music/video from multiple sources.
 
-USAGE:
-   glod-cli [global options] command [command options] [arguments...]
+Usage:
+  glod [command]
 
-VERSION:
-   1.0.3
+Available Commands:
+  download    download command
+  help        Help about any command
+  play        play command
+  version     Print the version number of glod-cli
 
-AUTHOR(S):
-    <dev@dwarvesf.com>
+Use "glod [command] --help" for more information about a command.
 
-COMMANDS:
-   help, h	Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   --Media URL "link"				Input MP3/nhaccuatui/youtube/soundcloud link
-   --Custom output directory "dir"	The directory you want to save
-   --play							Play song after downloaded
-   --help, -h						show help
-   --version, -v					print the version
-	
 ```
 
-Example:
+##### Example:
+
 To download song/video to current directory
 ```
 glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw 
 ```
+
 To download song/video to custom directory
 ```
 glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw -o=youtube-download
 ```
+
 To play song/video after downloaded(OSX support)
 ```
 glod-cli play https://www.youtube.com/watch?v=6d6oq0zGGmw
 ```
-
 
 # Supported sources & TODO
 
@@ -117,8 +110,6 @@ glod-cli play https://www.youtube.com/watch?v=6d6oq0zGGmw
 - [ ] Flickr
 - [ ] Slideshare
 - [ ] Dropbox
-
-
 
 # License
 
