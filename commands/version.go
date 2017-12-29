@@ -2,7 +2,6 @@ package commands
 
 import (
 	"github.com/Sirupsen/logrus"
-	"github.com/goguard/goguard/version"
 )
 
 const (
@@ -10,5 +9,5 @@ const (
 )
 
 func runVersion() {
-	logrus.Printf("Glod-cli's version %s", version.VERSION)
+	logrus.Printf("Glod-cli's version %s", VERSION)
 }
