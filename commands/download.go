@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"github.com/Sirupsen/logrus"
 	"github.com/dwarvesf/glod"
+	"github.com/sirupsen/logrus"
 )
 
 func runDownload() {

@@ -11,9 +11,9 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/cheggaaa/pb"
 	"github.com/dwarvesf/glod"
+	"github.com/sirupsen/logrus"
 )
 
 func write(objs []ObjectResponse) {

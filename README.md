@@ -1,90 +1,56 @@
-# glod-cli
+# basil
 
-**glod-cli** is a small command line tool that using [glod](https://github.com/dwarvesf/glod) to download music/video from multiple sources.
+**basil** is a small command line tool that using [glod](https://github.com/dwarvesf/glod) to download music/video from multiple sources.
 
-glod-cli is written in [Go](http://golang.org/) with support for multiple platforms. We currently provide pre-built binaries for Windows, Linux, FreeBSD and  OS X (Darwin) for x64, i386 and ARM architectures.
+This project has been forked from [github.com/dwarvesf/glod-cli](https://github.com/dwarvesf/glod-cli)
+
+glod-cli is written in [Go](http://golang.org/) with support for multiple platforms. We currently provide pre-built binaries for Windows, Linux, FreeBSD and OS X (Darwin) for x64, i386 and ARM architectures.
 
 glod-cli may also be compiled from source wherever the Go compiler tool chain can run, e.g. for other operating systems including DragonFly BSD, OpenBSD, Plan 9 and Solaris
 
 [![Video Walkthrough](/img/walkthrough.gif)](/img/walkthrough.gif)
 
-## Installation
-
-### Binary Install
-
-If you want to use glod-cli, simply install the glod-cli binaries. The glod-cli binaries have no external dependencies.
-
-Installation is very easy. Simply download the appropriate version for your platform from [glod-cli Releases](https://github.com/dwarvesf/glod-cli/releases). Once downloaded it can be run from anywhere. You don’t need to install it into a global location. This works well for shared hosts and other systems where you don’t have a privileged account.
-
-Ideally, you should download and put it somewhere in your `$PATH` for easy use. `/usr/local/bin` is the most probable location.
-
-On OS X, if you have [Homebrew](http://brew.sh/), installation is even easier:
-
-```
-$ brew tap dwarvesf/homebrew-tap
-$ brew install glod-cli
-```
-
-[![Homebrew Tap](/img/homebrew-tap.png)](/img/homebrew-tap.png)
-
-### Build and Install the Binaries from Source
-  
-Add glod-cli and its package dependencies to your go src directory.
-
-```
-go get -v github.com/dwarvesf/glod-cli
-```
-
-Once the get completes, you should find your new `glod-cli` (or `glod-cli.exe`) executable sitting inside `$GOPATH/bin/`.
-
-To update glod-cli dependencies, use `go get` with the `-u` option.
-
-```
-go get -u -v github.com/dwarvesf/glod-cli
-```
-
-### Upgrading
-
-Upgrading glod-cli is as easy as downloading and replacing the executable you’ve placed in your `$PATH`.
-
 ## Usage
 
-Make sure either `glod-cli` is in your `$PATH` or provide a path to it.
+Make sure either `basel` is in your `$PATH` or provide a path to it.
 
-``` shell
+```shell
 
-$ glod-cli help
+$ basel help
 
 A small cli written in Go to help download music/video from multiple sources.
 
 Usage:
-  glod [command]
+  basel [command]
 
 Available Commands:
   download    download command
   help        Help about any command
   play        play command
-  version     Print the version number of glod-cli
+  version     Print the version number of basel
 
-Use "glod [command] --help" for more information about a command.
+Use "basel [command] --help" for more information about a command.
 
 ```
 
 ##### Example:
 
 To download song/video to current directory
+
 ```
-glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw 
+basel download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw
 ```
 
 To download song/video to custom directory
+
 ```
-glod-cli download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw -o=youtube-download
+basel download -l=https://www.youtube.com/watch?v=6d6oq0zGGmw -o=youtube-download
 ```
 
 To play song/video after downloaded(OSX support)
+
 ```
-glod-cli play https://www.youtube.com/watch?v=6d6oq0zGGmw
+basel play https://www.youtube.com/watch?v=6d6oq0zGGmw
 ```
 
 # Supported sources & TODO
@@ -96,20 +62,11 @@ glod-cli play https://www.youtube.com/watch?v=6d6oq0zGGmw
 - [x] [SoundCloud](https://soundcloud.com)
 - [x] [Chiasenhac](http://chiasenhac.com)
 
-### Video 
+### Video
 
 - [x] [YouTube](https://www.youtube.com/)
 - [x] [Facebook](https://facebook.com/)
 - [x] [Vimeo](https://vimeo.com/)
-- [ ] Lynda
-- [ ] Udemy
-- [ ] Coursera
-
-### Files
-
-- [ ] Flickr
-- [ ] Slideshare
-- [ ] Dropbox
 
 # License
 
